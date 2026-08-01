@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Neon Lab — Dark (default): mint + violet on deep navy */
+    --background: 226 52% 6%;
+    --background-solid: #06070F;
+    --foreground: 200 30% 97%;
+    --card: 225 38% 10%;
+    --card-solid: #0E1322;
+    --card-foreground: 200 30% 97%;
+    --popover: 225 38% 10%;
+    --popover-foreground: 200 30% 97%;
+    --primary: 158 84% 52%;
+    --primary-foreground: 226 52% 6%;
+    --secondary: 225 30% 15%;
+    --secondary-foreground: 200 30% 97%;
+    --muted: 225 24% 13%;
+    --muted-foreground: 205 16% 66%;
+    --accent: 262 83% 66%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 225 24% 19%;
+    --input: 225 24% 19%;
+    --ring: 158 84% 52%;
+    --radius: 0.75rem;
+    --font-heading: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .light {
+    /* Warm Studio — Light: terracotta + plum on warm cream */
+    --background: 40 50% 97%;
+    --background-solid: #FAF6EF;
+    --foreground: 28 34% 13%;
+    --card: 0 0% 100%;
+    --card-solid: #FFFFFF;
+    --card-foreground: 28 34% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 28 34% 13%;
+    --primary: 20 80% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 32% 92%;
+    --secondary-foreground: 28 34% 13%;
+    --muted: 40 28% 93%;
+    --muted-foreground: 30 15% 38%;
+    --accent: 271 62% 46%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 38 28% 86%;
+    --input: 38 28% 86%;
+    --ring: 20 80% 42%;
+  }
+
+  /* ----------------------------------------------------------
+     1. BONE & RUST — industrial archive
+  ---------------------------------------------------------- */
+  .theme-bone-rust {
+    --background: 45 29% 92%;
+    --background-solid: #F0EDE4;
+    --foreground: 36 11% 9%;
+    --card: 43 28% 87%;
+    --card-solid: #E8E3D6;
+    --card-foreground: 36 11% 9%;
+    --popover: 43 28% 87%;
+    --popover-foreground: 36 11% 9%;
+    --primary: 13 61% 44%;
+    --primary-foreground: 45 29% 96%;
+    --secondary: 208 31% 35%;
+    --secondary-foreground: 45 29% 96%;
+    --muted: 43 20% 82%;
+    --muted-foreground: 36 8% 32%;
+    --accent: 208 31% 35%;
+    --accent-foreground: 45 29% 96%;
+    --destructive: 6 65% 42%;
+    --destructive-foreground: 45 29% 96%;
+    --border: 40 16% 72%;
+    --input: 40 16% 72%;
+    --ring: 13 61% 44%;
+    --radius: 0.125rem;
+    --font-heading: 'Fraunces', ui-serif, Georgia, serif;
+    --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  /* ----------------------------------------------------------
+     2. DEEP CORAL REEF — bio/ocean
+  ---------------------------------------------------------- */
+  .theme-reef {
+    --background: 180 58% 6%;
+    --background-solid: #071A1A;
+    --foreground: 152 48% 94%;
+    --card: 180 49% 10%;
+    --card-solid: #0D2626;
+    --card-foreground: 152 48% 94%;
+    --popover: 180 49% 10%;
+    --popover-foreground: 152 48% 94%;
+    --primary: 6 100% 68%;
+    --primary-foreground: 180 58% 6%;
+    --secondary: 180 35% 16%;
+    --secondary-foreground: 152 48% 94%;
+    --muted: 180 30% 12%;
+    --muted-foreground: 160 20% 65%;
+    --accent: 161 100% 62%;
+    --accent-foreground: 180 58% 6%;
+    --destructive: 6 90% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 180 30% 20%;
+    --input: 180 30% 20%;
+    --ring: 161 100% 62%;
+    --radius: 1.5rem;
+    --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* ----------------------------------------------------------
+     3. VELLUM & GRAPHITE — editorial minimal
+  ---------------------------------------------------------- */
+  .theme-vellum {
+    --background: 38 44% 96%;
+    --background-solid: #FAF7F2;
+    --foreground: 0 0% 17%;
+    --card: 0 0% 100%;
+    --card-solid: #FFFFFF;
+    --card-foreground: 0 0% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 17%;
+    --primary: 240 46% 31%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 42 30% 92%;
+    --secondary-foreground: 0 0% 17%;
+    --muted: 42 30% 92%;
+    --muted-foreground: 0 0% 38%;
+    --accent: 240 46% 31%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 60% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 20% 85%;
+    --input: 40 20% 85%;
+    --ring: 240 46% 31%;
+    --radius: 0.25rem;
+    --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Playfair Display', ui-serif, Georgia, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* ----------------------------------------------------------
+     4. CIRCUIT AMBER — retro terminal
+  ---------------------------------------------------------- */
+  .theme-circuit {
+    --background: 0 0% 4%;
+    --background-solid: #0A0A0A;
+    --foreground: 43 100% 85%;
+    --card: 0 0% 8%;
+    --card-solid: #141414;
+    --card-foreground: 43 100% 85%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 43 100% 85%;
+    --primary: 41 100% 50%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 39 100% 27%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 41 40% 55%;
+    --accent: 41 100% 50%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 41 60% 20%;
+    --input: 41 60% 20%;
+    --ring: 41 100% 50%;
+    --radius: 0.125rem;
+    --font-heading: 'JetBrains Mono', ui-monospace, monospace;
+    --font-body: 'JetBrains Mono', ui-monospace, monospace;
+    --font-display: 'JetBrains Mono', ui-monospace, monospace;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* ----------------------------------------------------------
+     5. CLAY STUDIO — tactile craft
+  ---------------------------------------------------------- */
+  .theme-clay {
+    --background: 41 32% 85%;
+    --background-solid: #E4DCCB;
+    --foreground: 30 26% 18%;
+    --card: 41 37% 90%;
+    --card-solid: #EFE9DC;
+    --card-foreground: 30 26% 18%;
+    --popover: 41 37% 90%;
+    --popover-foreground: 30 26% 18%;
+    --primary: 92 13% 42%;
+    --primary-foreground: 41 32% 96%;
+    --secondary: 41 25% 78%;
+    --secondary-foreground: 30 26% 18%;
+    --muted: 41 25% 78%;
+    --muted-foreground: 30 15% 34%;
+    --accent: 16 62% 47%;
+    --accent-foreground: 41 32% 96%;
+    --destructive: 6 62% 42%;
+    --destructive-foreground: 41 32% 96%;
+    --border: 40 20% 70%;
+    --input: 40 20% 70%;
+    --ring: 16 62% 47%;
+    --radius: 0.875rem;
+    --font-heading: 'Fraunces', ui-serif, Georgia, serif;
+    --font-body: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  /* ----------------------------------------------------------
+     6. ULTRAVIOLET PRINT — rave flyer
+  ---------------------------------------------------------- */
+  .theme-uv {
+    --background: 0 0% 99%;
+    --background-solid: #FDFDFD;
+    --foreground: 0 0% 4%;
+    --card: 0 0% 100%;
+    --card-solid: #FFFFFF;
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 266 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 30%;
+    --accent: 329 100% 59%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 4%;
+    --input: 0 0% 4%;
+    --ring: 266 100% 50%;
+    --radius: 0;
+    --font-heading: 'Archivo Black', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Archivo Black', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .font-heading { font-family: var(--font-heading); }
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+
+  .text-stroke-accent {
+    -webkit-text-stroke: 1px hsl(var(--primary));
+    color: transparent;
+  }
+
+  .glass {
+    background: hsl(var(--card) / 0.55);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid hsl(var(--border) / 0.7);
+  }
+
+  .glass-strong {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid hsl(var(--border) / 0.8);
+  }
+
+  .hairline { border: 0.5px solid hsl(var(--border)); }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.35) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.35) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.4), 0 0 32px -4px hsl(var(--primary) / 0.45);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px hsl(var(--primary) / 0.5);
+  }
+
+  .foil-badge {
+    background: linear-gradient(135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 25%,
+      hsl(45 90% 60%) 50%,
+      hsl(var(--primary)) 75%,
+      hsl(var(--accent)) 100%);
+    background-size: 220% 220%;
+    animation: foil-shift 6s ease infinite;
+  }
+
+  @keyframes foil-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 hsl(var(--primary) / 0.6); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 6px hsl(var(--primary) / 0); }
+  }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; }
+
+  /* self-scrolling marquee for certifications */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-x 34s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+
+  @keyframes marquee-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* fade the marquee edges */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+
+  /* Circuit Amber signature: scanline overlay. Add class="scanlines" to a wrapper */
+  .theme-circuit .scanlines {
+    position: relative;
+  }
+  .theme-circuit .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      hsl(var(--primary) / 0.04) 0px,
+      hsl(var(--primary) / 0.04) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+
+  /* Clay Studio signature: paper-grain overlay. Add class="grain" to a wrapper */
+  .theme-clay .grain {
+    position: relative;
+  }
+  .theme-clay .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Ultraviolet Print: force flat, hard-edged surfaces over glass/glow utilities */
+  .theme-uv .glass,
+  .theme-uv .glass-strong {
+    background: hsl(var(--card));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 2px solid hsl(var(--border));
+  }
+  .theme-uv .glow-accent {
+    box-shadow: 4px 4px 0 0 hsl(var(--foreground));
+  }
+}
