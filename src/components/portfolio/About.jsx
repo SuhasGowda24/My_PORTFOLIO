@@ -1,6 +1,29 @@
-import { Download, GraduationCap } from 'lucide-react';
-import Reveal from './Reveal';
-import { PROFILE, generateResume } from './resumeData';
+import { GraduationCap, MapPin, Brain, Code2, ScanSearch, Award } from "lucide-react";
+import Reveal from "./Reveal";
+import { PROFILE } from "./resumeData";
+
+const EXPERTISE = [
+  {
+    icon: Brain,
+    title: "Machine Learning",
+    points: ["TensorFlow & Keras", "Scikit-learn", "Model Development"],
+  },
+  {
+    icon: Code2,
+    title: "Full-Stack Development",
+    points: ["React.js", "Flask & Django", "REST APIs"],
+  },
+  {
+    icon: ScanSearch,
+    title: "Computer Vision",
+    points: ["OpenCV", "CNN Architectures", "Image Processing"],
+  },
+  {
+    icon: Award,
+    title: "Research",
+    points: ["2 Publications", "Best Paper Award", "Conference Author"],
+  },
+];
 
 export default function About() {
   return (
@@ -10,58 +33,90 @@ export default function About() {
           <SectionLabel index="01" title="About Me" />
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          <Reveal className="lg:col-span-7" delay={0.05}>
-            <p className="text-2xl sm:text-3xl font-heading font-medium leading-snug tracking-tight text-foreground">
-              Computer Science undergraduate{' '}
-              <span className="text-primary">(2022–2026)</span> with hands-on
-              experience across Machine Learning, Deep Learning, Computer Vision,
-              and Full Stack Development.
-            </p>
-            <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
-              {PROFILE.bio}
-            </p>
+        {/* intro — full width, own row */}
+        <Reveal delay={0.05}>
+          <div className="mt-14 max-w-4xl">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-foreground">
+              Transforming ideas into{" "}
+              <span className="text-primary">
+                intelligent software
+              </span>{" "}
+              through AI, Machine Learning, and scalable Full-Stack Development.
+            </h2>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <button
-                onClick={generateResume}
-                className="inline-flex items-center gap-2 rounded-md glass px-5 py-2.5 font-mono text-xs uppercase tracking-wider hover:text-primary transition-colors"
-              >
-                <Download className="h-4 w-4 text-primary" />
-                Download Resume (PDF)
-              </button>
-              <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-                <GraduationCap className="h-4 w-4 text-primary" />
-                B.E. Computer Science · 2022–2026
+            <p className="mt-7 text-lg leading-8 text-muted-foreground max-w-3xl">{PROFILE.bio}</p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <div className="inline-flex items-center gap-3 rounded-xl border border-border/60 bg-card px-5 py-4">
+                <GraduationCap className="h-5 w-5 text-primary shrink-0" />
+                <div>
+                <p className="font-semibold text-foreground">
+                  Bachelor of Engineering
+                </p>
+
+                <p className="text-sm text-foreground/90">
+                  Computer Science
+                </p>
+
+                <p className="mt-1 text-sm text-muted-foreground">
+                  K S School of Engineering and Management
+                </p>
+
+                <p className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">
+                  2022 – 2026
+                </p>
+              </div>
+              </div>
+              <div className="inline-flex items-center gap-3 rounded-xl border border-border/60 bg-card px-5 py-4">
+                <MapPin className="h-5 w-5 text-primary shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground">{PROFILE.location}</p>
+                  <p className="text-sm text-muted-foreground">Based in</p>
+                </div>
               </div>
             </div>
-          </Reveal>
+          </div>
+        </Reveal>
 
-          <Reveal className="lg:col-span-5" delay={0.1}>
-            <div className="glass rounded-xl p-6 sm:p-8 h-full">
-              <div className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary mb-5">
-                // quick facts
-              </div>
-              <dl className="space-y-4">
-                <Fact label="Name" value={PROFILE.name} />
-                <Fact label="Focus" value="ML · Full Stack · AI" />
-                <Fact label="Location" value={PROFILE.location} />
-                <Fact label="Open to" value="Software / AI-ML Engineering roles" />
-                <Fact label="Email" value={PROFILE.email} />
-              </dl>
+        {/* what I build — card grid, full width, own row below */}
+        <Reveal delay={0.15}>
+          <div className="mt-16">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-6">
+              Core Expertise
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {EXPERTISE.map((item) => (
+                <ExpertiseCard key={item.title} {...item} />
+              ))}
             </div>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function Fact({ label, value }) {
+function ExpertiseCard({ icon: Icon, title, points }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 border-b border-border/40 pb-3 last:border-0">
-      <dt className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/70">{label}</dt>
-      <dd className="text-sm text-foreground text-right">{value}</dd>
+    <div className="group relative rounded-xl border border-border/50 bg-card/40 p-6 overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1">
+      {/* thin top accent bar, brightens on hover — matches your glow-accent language instead of a generic shadow */}
+      <span className="absolute top-0 left-0 right-0 h-0.5 bg-primary/30 group-hover:bg-primary transition-colors duration-300" />
+
+      <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary mb-5 transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+        <Icon className="h-6 w-6" />
+      </div>
+
+      <h4 className="font-heading text-base font-semibold text-foreground">{title}</h4>
+
+      <ul className="mt-4 space-y-2">
+        {points.map((point) => (
+          <li key={point} className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+            {point}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

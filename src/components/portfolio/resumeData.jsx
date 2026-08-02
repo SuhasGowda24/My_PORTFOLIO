@@ -1,13 +1,18 @@
 import { jsPDF } from 'jspdf';
+import profilePhoto from '../../assets/images/profilepic.png';
 
 export const PROFILE = {
   name: 'Suhas S',
   title: 'Machine Learning Engineer | Full Stack Developer | AI Engineer',
   pitch: 'Building end-to-end AI solutions and scalable web applications — from data to deployment.',
   // Replace this with a URL to your photo (or upload one and paste the file_url here).
-  photo: '',
-  bio: 'Computer Science undergraduate (2022–2026) with hands-on experience across Machine Learning, Deep Learning, Computer Vision, and Full Stack Development. Skilled in building scalable web applications, REST APIs, and predictive models using Python, React, TensorFlow, and Scikit-learn. Currently seeking software engineering or AI/ML engineering roles.',
-  email: 'suhas@example.com',
+  photo: profilePhoto,
+  bio: <p className="mt-6 text-lg leading-8 text-muted-foreground">
+Computer Science undergraduate passionate about building AI-powered applications,
+  computer vision systems, and scalable web solutions using Python, React,
+  TensorFlow, Flask, and Scikit-learn.
+</p>,
+  email: 'srisuhasgowda24@gmail.com',
   location: 'Bengaluru, India',
   links: {
     linkedin: 'https://linkedin.com/in/suhas-s-641a6a243',

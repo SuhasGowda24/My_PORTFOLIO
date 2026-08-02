@@ -42,9 +42,10 @@ export default function Navbar() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 pulse-dot" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
             </span>
-            <span className="font-heading font-bold tracking-tight text-sm whitespace-nowrap">
-              SUHAS<span className="text-primary">.</span>S
-            </span>
+            <span className="font-heading font-black tracking-[0.08em] text-sm uppercase whitespace-nowrap">
+  SUHAS<span className="text-primary"></span>{" "}
+  <span className="text-primary">S</span>
+</span>
           </a>
 
           {/* link rail — clipped to 0 width until scrolled, then unfurls outward from the logo */}
