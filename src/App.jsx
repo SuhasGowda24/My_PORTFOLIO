@@ -8,13 +8,15 @@ import Certifications from "./components/portfolio/Certifications";
 import Contact from "./components/portfolio/Contact";
 import Footer from "./components/portfolio/Footer";
 import { Toaster } from "sonner";
-
+import { Sidebar, ScrollTop } from './components/portfolio/Sidebar';
 
 function App() {
   return (
     <div className="bg-background text-foreground min-h-screen">
 
       <Navbar />
+      <Sidebar />
+      <ScrollTop />
 
       <main>
         <Hero />
