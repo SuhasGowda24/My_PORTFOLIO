@@ -3,7 +3,7 @@ import profilePhoto from '../../assets/images/profilepic.png';
 
 export const PROFILE = {
   name: 'Suhas S',
-  title: 'Machine Learning Engineer | Full Stack Developer | AI Engineer',
+  title: 'AI Engineer | Machine Learning Engineer | Full-Stack Developer',
   pitch: 'Building end-to-end AI solutions and scalable web applications — from data to deployment.',
   // Replace this with a URL to your photo (or upload one and paste the file_url here).
   photo: profilePhoto,
@@ -21,14 +21,30 @@ Computer Science undergraduate passionate about building AI-powered applications
 };
 
 export const SKILLS = [
-  { group: 'Programming', items: ['Python', 'JavaScript', 'SQL'] },
-  { group: 'Frontend', items: ['HTML', 'CSS', 'React.js'] },
-  { group: 'Backend', items: ['Flask', 'Django', 'Node.js'] },
-  { group: 'Machine Learning', items: ['Scikit-learn', 'Hyperparameter Tuning', 'Data Preprocessing', 'Feature Engineering'] },
-  { group: 'Deep Learning', items: ['TensorFlow', 'Keras', 'CNN', 'Transfer Learning'] },
-  { group: 'Computer Vision', items: ['OpenCV'] },
-  { group: 'Databases', items: ['MySQL', 'MongoDB'] },
-  { group: 'Tools', items: ['Git', 'GitHub', 'Jupyter Notebook', 'VS Code', 'Render', 'Vercel'] },
+  {
+    group: 'Frontend Development',
+    items: ["React.js", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Vite"],
+  },
+  {
+    group: 'Backend Development',
+    items: ['Python', 'Flask', 'Django', 'Node.js', "REST APIs", "JWT Authentication"],
+  },
+  {
+    group: 'AI & Machine Learning',
+    items: ['Scikit-learn', 'TensorFlow', 'Keras', 'Feature Engineering', 'Data Preprocessing', "Hyperparameter Tuning"],
+  },
+  {
+    group: "Computer Vision",
+    items: ["OpenCV", "CNN"],
+  },
+    {
+    group: "Databases & Deployment",
+    items: ['MySQL', 'MongoDB', "Render", "Vercel", "Hugging Face Spaces",],
+  },
+  {
+    group: 'Developer Tools',
+    items: ['GitHub', 'VS Code', 'Jupyter Notebook', "Postman",],
+  },
 ];
 
 export const EXPERIENCE = [

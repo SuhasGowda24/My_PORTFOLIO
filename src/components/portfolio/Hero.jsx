@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { PROFILE, generateResume } from './resumeData';
 import { Image } from '../../components/ui/image';
 
-const TITLE = 'Machine Learning Engineer | Full Stack Developer | AI Engineer';
+const TITLE = 'AI Engineer | Machine Learning Engineer | Full-Stack Developer';
 
 export default function Hero() {
   return (

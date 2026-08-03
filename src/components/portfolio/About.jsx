@@ -21,7 +21,7 @@ const EXPERTISE = [
   {
     icon: Award,
     title: "Research",
-    points: ["2 Publications", "Best Paper Award", "Conference Author"],
+    points: ["International Journal Publication", "National Conference Paper"],
   },
 ];
 
@@ -35,11 +35,11 @@ export default function About() {
 
         {/* intro — full width, own row */}
         <Reveal delay={0.05}>
-          <div className="mt-14 max-w-4xl">
+          <div className="mt-14 max-w-5xl">
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-foreground">
               Transforming ideas into{" "}
-              <span className="text-primary">
-                intelligent software
+              <span className="text-primary italic">
+              intelligent software
               </span>{" "}
               through AI, Machine Learning, and scalable Full-Stack Development.
             </h2>
@@ -47,7 +47,9 @@ export default function About() {
             <p className="mt-7 text-lg leading-8 text-muted-foreground max-w-3xl">{PROFILE.bio}</p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <div className="inline-flex items-center gap-3 rounded-xl border border-border/60 bg-card px-5 py-4">
+              <div className="inline-flex items-center gap-3 rounded-2xl
+border border-border/60 bg-card/70 backdrop-blur px-5 py-4
+transition-all duration-300 hover:border-primary/40 hover:-translate-y-1">
                 <GraduationCap className="h-5 w-5 text-primary shrink-0" />
                 <div>
                 <p className="font-semibold text-foreground">
@@ -67,13 +69,13 @@ export default function About() {
                 </p>
               </div>
               </div>
-              <div className="inline-flex items-center gap-3 rounded-xl border border-border/60 bg-card px-5 py-4">
+              {/* <div className="inline-flex items-center gap-3 rounded-xl border border-border/60 bg-card px-5 py-4">
                 <MapPin className="h-5 w-5 text-primary shrink-0" />
                 <div>
                   <p className="font-medium text-foreground">{PROFILE.location}</p>
                   <p className="text-sm text-muted-foreground">Based in</p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </Reveal>
@@ -81,7 +83,14 @@ export default function About() {
         {/* what I build — card grid, full width, own row below */}
         <Reveal delay={0.15}>
           <div className="mt-16">
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-6">
+            <h3 className="
+font-heading
+text-lg
+font-semibold
+tracking-wide
+text-foreground
+mb-8
+">
               Core Expertise
             </h3>
 
@@ -99,7 +108,23 @@ export default function About() {
 
 function ExpertiseCard({ icon: Icon, title, points }) {
   return (
-    <div className="group relative rounded-xl border border-border/50 bg-card/40 p-6 overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1">
+    <div className="
+group
+relative
+rounded-2xl
+border
+border-border/50
+bg-card/40
+backdrop-blur
+p-6
+overflow-hidden
+transition-all
+duration-300
+hover:border-primary/40
+hover:bg-card/70
+hover:shadow-xl
+hover:-translate-y-1
+">
       {/* thin top accent bar, brightens on hover — matches your glow-accent language instead of a generic shadow */}
       <span className="absolute top-0 left-0 right-0 h-0.5 bg-primary/30 group-hover:bg-primary transition-colors duration-300" />
 
@@ -107,9 +132,9 @@ function ExpertiseCard({ icon: Icon, title, points }) {
         <Icon className="h-6 w-6" />
       </div>
 
-      <h4 className="font-heading text-base font-semibold text-foreground">{title}</h4>
+      <h4 className="font-heading text-lg font-semibold text-foreground">{title}</h4>
 
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-4 space-y-3">
         {points.map((point) => (
           <li key={point} className="flex items-center gap-2 text-sm text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
@@ -123,10 +148,14 @@ function ExpertiseCard({ icon: Icon, title, points }) {
 
 function SectionLabel({ index, title }) {
   return (
-    <div className="flex items-center gap-4">
-      <span className="font-mono text-xs text-primary">{index}</span>
-      <span className="h-px w-8 bg-primary/50" />
-      <h2 className="font-heading text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+    <div className="flex items-center gap-5">
+      <span className="font-mono text-sm font-medium text-primary">
+        {index}
+      </span>
+
+      <span className="h-px w-12 bg-primary/60" />
+
+      <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
         {title}
       </h2>
     </div>
