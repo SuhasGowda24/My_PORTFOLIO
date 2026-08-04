@@ -4,6 +4,10 @@ import { FolderGit2, ArrowUpRight } from 'lucide-react';
 import Reveal from './Reveal';
 import ProjectModal from './ProjectModal';
 import NSense from '../../assets/images/NSense.png';
+import AcademiaSync from '../../assets/images/Academia2.png';
+import CYP from '../../assets/images/CYP2.png';
+import Cellpred from '../../assets/images/Cellpred.png';
+import COL from '../../assets/images/COL.png';
 
 const FALLBACK = [
   {
@@ -22,7 +26,7 @@ const FALLBACK = [
     category: 'Full Stack',
     tech_stack: ['React', 'Django REST Framework', 'MySQL', 'JWT', 'Ollama (LLM)'],
     description: 'Multi-college academic management platform with role-based access for admins, teachers, and students — covering attendance, timetables, assignments, grades, and custom forms. Includes AI-generated email drafts for low-attendance alerts via a locally-run LLM.',
-    image_url: '',
+    image_url: AcademiaSync,
     github_url: 'https://github.com/SuhasGowda24/Academia_Sync',
     paper_url: '',
     metric: '20+ Modules',
@@ -33,18 +37,18 @@ const FALLBACK = [
     category: 'Machine Learning',
     tech_stack: ['Python', 'Scikit-learn', 'Streamlit', 'OpenWeather API'],
     description: 'Random Forest model for crop yield prediction using agricultural and real-time weather data; 85% accuracy. Published in NISCE-25 (Best Paper award).',
-    image_url: '',
+    image_url: CYP,
     github_url: 'https://github.com/SuhasGowda24',
     paper_url: '',
     metric: '85% Accuracy',
     order: 3,
   },
   {
-    title: 'Mobile Phone Price Range Prediction',
+    title: 'Cell Phone Price Range Prediction',
     category: 'Machine Learning',
     tech_stack: ['Python', 'Pandas', 'Scikit-learn', 'XGBoost'],
     description: 'Multiclass classification of mobile phone price ranges using hardware and connectivity specs; compared 7 models and tuned with GridSearchCV. Tuned Logistic Regression achieved 98.25% test accuracy and 96.12% cross-validation accuracy.',
-    image_url: '',
+    image_url: Cellpred,
     github_url: 'https://github.com/SuhasGowda24/Cellphone-Price-Range-Prediction',
     paper_url: '',
     metric: '98.25% Accuracy',
@@ -55,7 +59,7 @@ const FALLBACK = [
     category: 'Full Stack',
     tech_stack: ['Python', 'Flask', 'SQLite'],
     description: 'Web app comparing cost of living across 50+ countries with full CRUD functionality and responsive UI.',
-    image_url: '',
+    image_url: COL,
     github_url: 'https://github.com/SuhasGowda24',
     paper_url: '',
     metric: '50+ Countries',
