@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Award, BookOpen, ScrollText } from 'lucide-react';
+import { ArrowRight, BookOpen, ScrollText, Users } from 'lucide-react';
 import Reveal from './Reveal';
 import Modal from './Modal';
 import { PUBLICATIONS } from './resumeData';
@@ -18,19 +18,22 @@ export default function Publications() {
                 <div className="flex items-center gap-4">
                   <span className="font-mono text-xs text-primary">05</span>
                   <span className="h-px w-8 bg-primary/50" />
-                  <h2 className="font-heading text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                  <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
                     Publications
                   </h2>
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
                 <h3 className="mt-6 font-heading text-3xl sm:text-4xl font-bold tracking-tight">
-                  Academic<br />Contributions
+                  Research<br />Work
                 </h3>
-                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-                  Peer-reviewed research at the intersection of machine learning
-                  and real-world problem domains.
-                </p>
+
+<p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+  Published research focused on applying{" "}
+  <span className="text-primary font-medium">
+    machine learning to real-world problems.
+  </span>
+</p>
               </Reveal>
             </div>
           </div>
@@ -41,17 +44,9 @@ export default function Publications() {
               <Reveal key={p.title} delay={0.08 * i}>
                 <article className="relative glass rounded-xl p-6 sm:p-7 overflow-hidden">
                   <div className="flex items-start gap-4">
-                    <div className="shrink-0 mt-1">
-                      {p.award ? (
-                        <span className="foil-badge inline-flex h-9 w-9 items-center justify-center rounded-lg text-white shadow-lg">
-                          <Award className="h-4 w-4" />
-                        </span>
-                      ) : (
-                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-primary/30 text-primary">
-                          <ScrollText className="h-4 w-4" />
-                        </span>
-                      )}
-                    </div>
+                    <span className="shrink-0 mt-1 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-primary/30 text-primary">
+                      <ScrollText className="h-4 w-4" />
+                    </span>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-primary">
                         <BookOpen className="h-3 w-3" />
@@ -61,20 +56,23 @@ export default function Publications() {
                         {p.title}
                       </h4>
                       <p className="mt-2 text-sm text-muted-foreground">{p.venue}</p>
+
+                      {p.authors?.length > 0 && (
+                        <div className="mt-2 flex items-start gap-1.5 text-xs text-muted-foreground/80">
+                          <Users className="h-3.5 w-3.5 shrink-0 mt-0.5" />
+                          <span>{p.authors.join(', ')}</span>
+                        </div>
+                      )}
+
                       <div className="mt-3 flex flex-wrap items-center gap-3 font-mono text-[11px] text-muted-foreground/80">
-                        <span>ISBN {p.isbn}</span>
-                        {p.award && (
-                          <span className="foil-badge rounded-full px-3 py-1 text-white text-[10px] font-semibold uppercase tracking-wider">
-                            ★ Best Paper Award
-                          </span>
-                        )}
+                        {p.identifierValue && <span>{p.identifierLabel} {p.identifierValue}</span>}
                       </div>
 
                       <button
                         onClick={() => setSelected(p)}
-                        className="mt-4 inline-flex items-center gap-1 text-xs font-mono text-foreground hover:text-primary transition-colors"
+                        className="mt-5 inline-flex items-center gap-2 rounded-lg bg-primary/10 border border-primary/20 px-4 py-2.5 text-xs font-mono uppercase tracking-wider text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary"
                       >
-                        View
+                        View Publication
                         <ArrowRight className="h-3.5 w-3.5" />
                       </button>
                     </div>
@@ -89,7 +87,7 @@ export default function Publications() {
       <Modal
         open={!!selected}
         onClose={() => setSelected(null)}
-        badge={selected?.award ? 'Research Paper · Best Paper Award' : 'Research Paper'}
+        badge="Research Paper"
         title={selected?.title ?? ''}
         links={selected?.url ? [{ href: selected.url, label: 'Read Paper', primary: true }] : []}
       >
@@ -98,19 +96,36 @@ export default function Publications() {
             <div>
               <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/70 mb-2">Venue</h4>
               <p className="text-sm text-foreground">{selected.venue}</p>
+              {selected.website && (
+                <a
+                  href={selected.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-1 inline-block text-xs font-mono text-primary hover:underline"
+                >
+                  {selected.website.replace(/^https?:\/\//, '')}
+                </a>
+              )}
             </div>
+
+            {selected.authors?.length > 0 && (
+              <div>
+                <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/70 mb-2">Authors</h4>
+                <p className="text-sm text-foreground/80">{selected.authors.join(', ')}</p>
+              </div>
+            )}
+
             <div>
               <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/70 mb-2">Abstract</h4>
               <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">{selected.abstract}</p>
             </div>
-            <div className="flex flex-wrap gap-4 font-mono text-[11px] text-muted-foreground/80">
-              <span>ISBN {selected.isbn}</span>
-              {selected.award && (
-                <span className="foil-badge rounded-full px-3 py-1 text-white text-[10px] font-semibold uppercase tracking-wider">
-                  ★ Best Paper Award
-                </span>
-              )}
-            </div>
+
+            {selected.identifierValue && (
+              <div className="flex flex-wrap gap-4 font-mono text-[11px] text-muted-foreground/80">
+                <span>{selected.identifierLabel} {selected.identifierValue}</span>
+              </div>
+            )}
+
             {/* paper preview frame — shows when a url is provided */}
             <div className="rounded-lg border border-dashed border-border/70 aspect-[4/5] flex items-center justify-center bg-card/40 overflow-hidden">
               {selected.url ? (

@@ -2,6 +2,7 @@ import { jsPDF } from 'jspdf';
 import profilePhoto from '../../assets/images/profilepic.png';
 import companyLogo from '../../assets/images/Gleamator.ico';
 import rubixeLogo from '../../assets/images/rubixelogo.png';
+// import PublishedNeuroSense from '../../../public/Papers/Published Paper NeuroSense PD-(KSIT).pdf'; 
 
 export const PROFILE = {
   name: 'Suhas S',
@@ -97,21 +98,26 @@ export const SKILLS = [
 export const PUBLICATIONS = [
   {
     title: "NeuroSense: AI-Driven Parkinson's Disease Prediction Using Online Handwriting",
-    venue: 'National Conference on Recent Innovations in Engineering (2025)',
-    isbn: '978-81-929425-1-3',
-    award: false,
-    url: '',
+    venue: 'National Conference on Recent Innovations in Engineering - 2025',
+    identifierLabel: 'ISBN',
+    identifierValue: '978-81-929425-1-3',
+    website: 'https://github.com/SuhasGowda24/Published_Paper-NeuroSense-AI-Driven-Parkinson-s-Disease-Prediction-Using-Online-Handwriting/blob/main/Published%20Paper%20NeuroSense%20PD-(KSIT).pdf',
+    authors: ['Jayashubha J', 'Suhas S', 'Sakesh P', 'Shashank D Urs', 'Pavan Kumar'],
+    url:  '/Papers/Published%20Paper%20NeuroSense%20PD-(KSIT).pdf',
     abstract:
       "A full-stack screening application that analyzes online handwriting to detect early Parkinson's disease indicators using a CNN with transfer learning. The model achieved 87% accuracy, an F1-score of 0.85, and 96.67% specificity on the held-out test set.",
   },
   {
-    title: 'Crop Yield Prediction using Machine Learning',
-    venue: 'NISCE-25 Conference Proceedings',
-    isbn: '978-93-49421-81-3',
-    award: true,
-    url: '',
+    title: 'AI-Driven Crop Yield Prediction for Sustainable Agriculture',
+    venue: 'International Journal of Engineering Science Invention Research & Development (IJESIRD)',
+    issue: 'Vol. 12, Special Issue 11 · May 2026',
+    identifierLabel: 'E-ISSN',
+    identifierValue: '2349-6185',
+    website: 'https://www.ijesird.com/vol-12-special-issue-11-may-2026-proceeding-of-conference/',
+    authors: ['Pavan U', 'Suhas S', 'Sakesh P', 'Shashank D Urs', 'Rajesh P C'],
+    url: 'https://www.ijesird.com/wp-content/uploads/2026/05/1.pdf',
     abstract:
-      'A Random Forest based approach to predicting crop yields from agricultural and real-time weather data, achieving 85% accuracy. Awarded Best Paper at NISCE-25 for its applied impact on precision agriculture.',
+      'A Random Forest based approach to predicting crop yields from agricultural and real-time weather data, achieving 85% accuracy.',
   },
 ];
 
@@ -143,7 +149,6 @@ export const CERTIFICATIONS = [
 ];
 
 export const ACHIEVEMENTS = [
-  { title: 'Best Paper Award', detail: 'NISCE-25 — for "Crop Yield Prediction using Machine Learning".', icon: 'award' },
   { title: 'Published Researcher', detail: 'Two peer-reviewed papers in national engineering conferences.', icon: 'book' },
   { title: 'Full-Stack Project Delivery', detail: 'Shipped AcademiaFlow end-to-end during industry internship.', icon: 'rocket' },
 ];
@@ -246,7 +251,12 @@ export function generateResume() {
     y += 13;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(90, 90, 90);
-    doc.text(`${p.venue}${p.award ? ' — Best Paper Award' : ''}  |  ISBN ${p.isbn}`, M, y, { maxWidth: W - M * 2 });
+    doc.text(
+      `${p.venue}  |  ${p.identifierLabel} ${p.identifierValue}`,
+      M,
+      y,
+      { maxWidth: W - M * 2 }
+    );
     y += 16;
   });
   y += 4;
