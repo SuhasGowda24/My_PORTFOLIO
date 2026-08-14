@@ -46,7 +46,7 @@ export default function About() {
 
             <p className="mt-7 text-lg leading-8 text-muted-foreground max-w-3xl">{PROFILE.bio}</p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            {/* <div className="mt-8 flex flex-wrap gap-4">
               <div className="inline-flex items-center gap-3 rounded-2xl
 border border-border/60 bg-card/70 backdrop-blur px-5 py-4
 transition-all duration-300 hover:border-primary/40 hover:-translate-y-1">
@@ -69,14 +69,7 @@ transition-all duration-300 hover:border-primary/40 hover:-translate-y-1">
                 </p>
               </div>
               </div>
-              {/* <div className="inline-flex items-center gap-3 rounded-xl border border-border/60 bg-card px-5 py-4">
-                <MapPin className="h-5 w-5 text-primary shrink-0" />
-                <div>
-                  <p className="font-medium text-foreground">{PROFILE.location}</p>
-                  <p className="text-sm text-muted-foreground">Based in</p>
-                </div>
-              </div> */}
-            </div>
+            </div> */}
           </div>
         </Reveal>
 

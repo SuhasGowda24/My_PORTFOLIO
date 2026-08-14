@@ -8,7 +8,7 @@ export default function Skills() {
         <Reveal>
           <div className="flex items-center gap-5">
           <span className="font-mono text-sm font-medium text-primary">
-            02
+            03
           </span>
 
           <span className="h-px w-12 bg-primary/60" />

@@ -18,7 +18,7 @@ const FALLBACK = [
     image_url: NSense,
     github_url: 'https://github.com/SuhasGowda24',
     paper_url: '',
-    metric: '87% Accuracy',
+    // metric: '87% Accuracy',
     order: 1,
   },
    {
@@ -29,18 +29,18 @@ const FALLBACK = [
     image_url: AcademiaSync,
     github_url: 'https://github.com/SuhasGowda24/Academia_Sync',
     paper_url: '',
-    metric: '20+ Modules',
+    // metric: '20+ Modules',
     order: 2,
   },
   {
-    title: 'Crop Yield Prediction using Machine Learning',
+    title: 'AI-Driven Crop Yield Prediction for Sustainable Agriculture',
     category: 'Machine Learning',
     tech_stack: ['Python', 'Scikit-learn', 'Streamlit', 'OpenWeather API'],
     description: 'Random Forest model for crop yield prediction using agricultural and real-time weather data; 85% accuracy. Published in NISCE-25 (Best Paper award).',
     image_url: CYP,
     github_url: 'https://github.com/SuhasGowda24',
     paper_url: '',
-    metric: '85% Accuracy',
+    // metric: '85% Accuracy',
     order: 3,
   },
   {
@@ -51,7 +51,7 @@ const FALLBACK = [
     image_url: Cellpred,
     github_url: 'https://github.com/SuhasGowda24/Cellphone-Price-Range-Prediction',
     paper_url: '',
-    metric: '98.25% Accuracy',
+    // metric: '98.25% Accuracy',
     order: 3,
   },
   {
@@ -62,7 +62,7 @@ const FALLBACK = [
     image_url: COL,
     github_url: 'https://github.com/SuhasGowda24',
     paper_url: '',
-    metric: '50+ Countries',
+    // metric: '50+ Countries',
     order: 5,
   },
 ];
@@ -127,11 +127,11 @@ function ProjectCard({ project, onView }) {
         <span className="absolute top-3 left-3 rounded-full bg-background/80 backdrop-blur px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-primary border border-primary/20">
           {project.category}
         </span>
-        {project.metric && (
+        {/* {project.metric && (
           <span className="absolute top-3 right-3 rounded-full bg-background/80 backdrop-blur px-2.5 py-1 text-[10px] font-mono text-primary border border-primary/20">
             {project.metric}
           </span>
-        )}
+        )} */}
       </div>
 
       {/* body */}
