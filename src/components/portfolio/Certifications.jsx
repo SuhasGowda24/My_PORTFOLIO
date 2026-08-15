@@ -1,11 +1,22 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Award, BadgeCheck, BookOpen, Rocket, ArrowRight, ExternalLink } from 'lucide-react';
+import {
+  Award,
+  BadgeCheck,
+  BookOpen,
+  Rocket,
+  ArrowRight,
+  ArrowLeft,
+  ExternalLink,
+  Download
+} from 'lucide-react';
 import Reveal from './Reveal';
 import Modal from './Modal';
 import { ACHIEVEMENTS, CERTIFICATIONS } from './resumeData';
 
 const ACHIEVEMENT_ICONS = { award: Award, book: BookOpen, rocket: Rocket };
+const IMAGE_URL_RE = /\.(png|jpe?g|webp|gif|svg)$/i;
+const AUTO_ADVANCE_MS = 3200;
 
 export default function Certifications() {
   const [selected, setSelected] = useState(null);
@@ -15,46 +26,61 @@ export default function Certifications() {
     offset: ['start end', 'end start'],
   });
 
-  // duplicate once so the marquee can loop seamlessly (two identical groups)
-  const loop = [...CERTIFICATIONS, ...CERTIFICATIONS];
+  const verified = CERTIFICATIONS.filter((c) => c.verified);
+  const additional = CERTIFICATIONS.filter((c) => !c.verified);
 
   return (
     <section id="certifications" className="relative py-24 sm:py-32 border-t border-border/50 overflow-hidden">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
-          <div className="flex items-center gap-4">
-            <span className="font-mono text-xs text-primary">06</span>
-            <span className="h-px w-8 bg-primary/50" />
-            <h2 className="font-heading text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-              Certifications &amp; Achievements
+          <div className="flex items-center gap-5">
+            <span className="font-mono text-sm font-medium text-primary">
+              06
+            </span>
+
+            <span className="h-px w-12 bg-primary/60" />
+
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+              Certifications & Achievements
             </h2>
           </div>
         </Reveal>
 
-        {/* Certifications — self-scrolling marquee */}
-        <div className="mt-12">
-          <Reveal>
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="font-heading text-lg font-semibold text-foreground/90">Certifications</h3>
-              <span className="font-mono text-[11px] text-muted-foreground/70 hidden sm:block">
-                ← auto-scroll · hover to pause →
-              </span>
-            </div>
-          </Reveal>
-        </div>
-
         <Reveal delay={0.05}>
-          <div className="mt-6 marquee-mask overflow-hidden -mx-5 sm:mx-0">
-            <div className="marquee-track">
-              {[0, 1].map((group) => (
-                <div key={group} className="flex gap-5 pr-5" aria-hidden={group === 1 ? 'true' : undefined}>
-                  {CERTIFICATIONS.map((c, i) => (
-                    <CertCard key={`${group}-${i}`} cert={c} index={i} onView={() => setSelected(c)} />
-                  ))}
-                </div>
-              ))}
-            </div>
+          <div className="mt-12">
+            <CertCarousel
+              title="Verified Certifications"
+              subtitle={
+                <>
+                  Credentials with{" "}
+                  <span className="text-primary font-medium">
+                    public verification.
+                  </span>
+                </>
+              }
+              items={verified}
+              onView={setSelected}
+              offsetIndex={0}
+            />
           </div>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <CertCarousel
+            title="Additional Certifications"
+            subtitle={
+              <>
+                Additional learning across{" "}
+                <span className="text-primary font-medium">
+                  AI, web development, and full-stack technologies.
+                </span>
+              </>
+            }
+            items={additional}
+            onView={setSelected}
+            offsetIndex={verified.length}
+            className="mt-14"
+          />
         </Reveal>
 
         {/* Achievements — scroll-driven parallax drift */}
@@ -64,7 +90,7 @@ export default function Certifications() {
           </Reveal>
           <div className="space-y-5">
             {ACHIEVEMENTS.map((a, i) => (
-              <AchievementCard key={a.title} item={a} index={i} progress={scrollYProgress} />
+              <AchievementCard key={`${a.title}-${i}`} item={a} index={i} progress={scrollYProgress} />
             ))}
           </div>
         </div>
@@ -75,26 +101,65 @@ export default function Certifications() {
         onClose={() => setSelected(null)}
         badge={selected ? `Certificate · ${selected.year}` : ''}
         title={selected?.name ?? ''}
-        links={selected?.url ? [{ href: selected.url, label: 'View Certificate', primary: true }] : []}
+        links={
+          selected?.url
+            ? [{ href: selected.url, label: 'Verify Credential', primary: true }]
+            : []
+        }
       >
         {selected && (
           <div className="space-y-5">
+            {/* Issued by */}
             <div>
               <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/70 mb-2">Issued by</h4>
               <p className="text-sm text-foreground">{selected.issuer}</p>
+              {selected.date && (
+                <p className="mt-1 text-xs font-mono text-muted-foreground">
+                  Issued {selected.date}
+                </p>
+              )}
             </div>
+
+            {/* About */}
             <div>
               <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/70 mb-2">About</h4>
               <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">{selected.description}</p>
             </div>
-            <div className="rounded-lg border border-dashed border-border/70 aspect-[4/3] flex items-center justify-center bg-card/40 overflow-hidden">
-              {selected.url ? (
-                <img src={selected.url} alt={selected.name} className="h-full w-full object-contain" />
+
+            {/* Certificate preview + download button (top-right, docked to preview) */}
+            <div className="rounded-lg border border-border/70 bg-card/40 overflow-hidden relative">
+              {selected.fileUrl && (
+                <a
+                  href={selected.fileUrl}
+                  download
+                  className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-md bg-background/90 backdrop-blur-md border border-border/60 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  Download
+                </a>
+              )}
+
+              {selected.fileUrl ? (
+                <div className="aspect-[4/3] flex items-center justify-center">
+                  <iframe
+                    src={selected.fileUrl}
+                    title={selected.name}
+                    className="h-full w-full border-0"
+                  />
+                </div>
+              ) : selected.url && IMAGE_URL_RE.test(selected.url) ? (
+                <div className="aspect-[4/3] flex items-center justify-center">
+                  <img
+                    src={selected.url}
+                    alt={selected.name}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
               ) : (
-                <div className="text-center px-6">
+                <div className="p-8 text-center">
                   <ExternalLink className="h-6 w-6 text-primary/60 mx-auto" />
-                  <p className="mt-2 font-mono text-[11px] text-muted-foreground/70 leading-snug">
-                    Add a certificate image URL to show<br />a preview here in the modal.
+                  <p className="mt-2 font-mono text-[11px] text-muted-foreground/70">
+                    Certificate file not hosted yet.
                   </p>
                 </div>
               )}
@@ -106,31 +171,154 @@ export default function Certifications() {
   );
 }
 
+/**
+ * CertCarousel
+ * A scroll-snap track with real <button> arrow controls that step one
+ * card at a time, gentle auto-advance that pauses on hover/touch, and
+ * native swipe support on touch devices (the container is just a normal
+ * scrollable div with snap points — swipe works for free).
+ */
+function CertCarousel({ title, subtitle, items, onView, offsetIndex = 0, className = '' }) {
+  const trackRef = useRef(null);
+  const [paused, setPaused] = useState(false);
+
+  const scrollByCard = useCallback((dir) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector('[data-cert-card]');
+    const step = card ? card.getBoundingClientRect().width + 20 : 300;
+    el.scrollBy({ left: dir * step, behavior: 'smooth' });
+  }, []);
+
+  useEffect(() => {
+    if (paused || items.length < 2) return;
+    const id = setInterval(() => {
+      const el = trackRef.current;
+      if (!el) return;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        scrollByCard(1);
+      }
+    }, AUTO_ADVANCE_MS);
+    return () => clearInterval(id);
+  }, [paused, items.length, scrollByCard]);
+
+  if (items.length === 0) return null;
+
+  return (
+    <div className={className}>
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <h3 className="font-heading text-lg font-semibold text-foreground/90">
+            {title}
+          </h3>
+
+          {subtitle && (
+            <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              {subtitle}
+            </p>
+          )}
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            type="button"
+            onClick={() => scrollByCard(-1)}
+            aria-label={`Scroll ${title} left`}
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollByCard(1)}
+            aria-label={`Scroll ${title} right`}
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+          >
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={() => setPaused(true)}
+        onTouchEnd={() => setPaused(false)}
+        className="mt-5 flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-pl-5 scrollbar-thin -mx-5 px-5 sm:mx-0 sm:px-0"
+      >
+        {items.map((c, i) => (
+          <div key={c.name} data-cert-card className="snap-start shrink-0">
+            <CertCard cert={c} index={offsetIndex + i} onView={() => onView(c)} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * CertCard
+ * Compact card with a hover overlay that reveals the certification's
+ * description (only rendered if cert.description is present).
+ */
 function CertCard({ cert, index, onView }) {
   return (
-    <div className="group glass rounded-xl p-6 w-[280px] sm:w-[320px] shrink-0 flex flex-col hover:border-primary/40 transition-colors">
+    <div className="group relative glass rounded-xl p-6 w-[280px] sm:w-[320px] h-[240px] flex flex-col overflow-hidden hover:border-primary/40 transition-colors">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70">
           CERT_{String(index + 1).padStart(2, '0')}
         </span>
         <BadgeCheck className="h-5 w-5 text-primary/70 group-hover:text-primary transition-colors" />
       </div>
+
       <h4 className="mt-4 font-heading text-base font-semibold leading-snug text-foreground">
         {cert.name}
       </h4>
       <p className="mt-2 text-sm text-muted-foreground">{cert.issuer}</p>
-      {cert.year && <p className="mt-1 font-mono text-[11px] text-muted-foreground/70">{cert.year}</p>}
+      {cert.year && (
+        <p className="mt-1 font-mono text-[11px] text-muted-foreground/70">{cert.year}</p>
+      )}
 
       <div className="mt-5 flex items-center justify-between border-t border-border/50 pt-4">
-        <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70">Credential</span>
+        <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70">
+          Credential
+        </span>
         <button
           onClick={onView}
-          className="inline-flex items-center gap-1 text-xs font-mono text-foreground hover:text-primary transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono text-foreground hover:text-primary transition-colors"
         >
-          View
+          View Certificate
           <ArrowRight className="h-3.5 w-3.5" />
         </button>
       </div>
+
+      {/* Hover description overlay — only if cert.description exists.
+          Clicking anywhere on it opens the certificate, same as the
+          "View Certificate" button underneath. */}
+      {cert.description && (
+        <button
+          type="button"
+          onClick={onView}
+          className="absolute inset-0 flex flex-col justify-center text-left bg-background/95 backdrop-blur-md p-6 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 cursor-pointer"
+        >
+          <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70">
+            {cert.issuer}
+          </span>
+          <h4 className="mt-2 font-heading text-sm font-semibold text-foreground leading-snug">
+            {cert.name}
+          </h4>
+          <p className="mt-2 text-xs text-muted-foreground leading-relaxed line-clamp-4">
+            {cert.description}
+          </p>
+          <span className="mt-4 inline-flex items-center gap-2 text-xs font-mono text-primary">
+            View Certificate
+            <ArrowRight className="h-3.5 w-3.5" />
+          </span>
+        </button>
+      )}
     </div>
   );
 }
