@@ -20,6 +20,7 @@ const AUTO_ADVANCE_MS = 3200;
 
 export default function Certifications() {
   const [selected, setSelected] = useState(null);
+  const [selectedAchievement, setSelectedAchievement] = useState(null);
   const achievementsRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: achievementsRef,
@@ -90,7 +91,13 @@ export default function Certifications() {
           </Reveal>
           <div className="space-y-5">
             {ACHIEVEMENTS.map((a, i) => (
-              <AchievementCard key={`${a.title}-${i}`} item={a} index={i} progress={scrollYProgress} />
+              <AchievementCard
+                key={`${a.title}-${i}`}
+                item={a}
+                index={i}
+                progress={scrollYProgress}
+                onView={() => setSelectedAchievement(a)}
+              />
             ))}
           </div>
         </div>
@@ -126,47 +133,128 @@ export default function Certifications() {
               <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">{selected.description}</p>
             </div>
 
-            {/* Certificate preview + download button (top-right, docked to preview) */}
-            <div className="rounded-lg border border-border/70 bg-card/40 overflow-hidden relative">
-              {selected.fileUrl && (
+            {/* Download button — sits between description and preview */}
+            {selected.fileUrl && (
+              <div className="flex justify-end">
                 <a
                   href={selected.fileUrl}
                   download
-                  className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-md bg-background/90 backdrop-blur-md border border-border/60 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-md bg-amber-600/90 backdrop-blur-md border border-amber-500/60 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-amber-50 hover:bg-amber-500 hover:border-amber-400 transition-colors"
                 >
                   <Download className="h-3.5 w-3.5" />
                   Download
                 </a>
-              )}
+              </div>
+            )}
 
-              {selected.fileUrl ? (
-                <div className="aspect-[4/3] flex items-center justify-center">
-                  <iframe
-                    src={selected.fileUrl}
-                    title={selected.name}
-                    className="h-full w-full border-0"
-                  />
-                </div>
-              ) : selected.url && IMAGE_URL_RE.test(selected.url) ? (
-                <div className="aspect-[4/3] flex items-center justify-center">
-                  <img
-                    src={selected.url}
-                    alt={selected.name}
-                    className="h-full w-full object-contain"
-                  />
-                </div>
-              ) : (
-                <div className="p-8 text-center">
-                  <ExternalLink className="h-6 w-6 text-primary/60 mx-auto" />
-                  <p className="mt-2 font-mono text-[11px] text-muted-foreground/70">
-                    Certificate file not hosted yet.
-                  </p>
-                </div>
-              )}
-            </div>
+            {/* Certificate preview */}
+            <div className="rounded-lg border border-border/70 bg-card/40 overflow-hidden relative">
+  {selected.fileUrl ? (
+    <div className="aspect-[4/3] flex items-center justify-center bg-white">
+      {selected.fileType === 'image' ? (
+        <img
+          src={selected.fileUrl}
+          alt={selected.name}
+          className="h-full w-full object-contain p-2"
+        />
+      ) : (
+        <iframe
+          src={selected.fileUrl}
+          title={selected.name}
+          className="h-full w-full border-0"
+        />
+      )}
+    </div>
+  ) : selected.url && IMAGE_URL_RE.test(selected.url) ? (
+    <div className="aspect-[4/3] flex items-center justify-center bg-white">
+      <img
+        src={selected.url}
+        alt={selected.name}
+        className="h-full w-full object-contain p-2"
+      />
+    </div>
+  ) : (
+    <div className="p-8 text-center">
+      <ExternalLink className="h-6 w-6 text-primary/60 mx-auto" />
+      <p className="mt-2 font-mono text-[11px] text-muted-foreground/70">
+        Certificate file not hosted yet.
+      </p>
+    </div>
+  )}
+</div>
           </div>
         )}
       </Modal>
+      <Modal
+  open={!!selectedAchievement}
+  onClose={() => setSelectedAchievement(null)}
+  badge="Achievement"
+  title={selectedAchievement?.title ?? ''}
+>
+  {selectedAchievement && (
+    <div className="space-y-5">
+
+      {/* About */}
+      <div>
+        <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/70 mb-2">
+          About
+        </h4>
+
+        <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
+          {selectedAchievement.detail}
+        </p>
+      </div>
+
+      {/* Date */}
+      {selectedAchievement.date && (
+        <div>
+          <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/70 mb-2">
+            Date
+          </h4>
+
+          <p className="text-sm text-foreground">
+            {selectedAchievement.date}
+          </p>
+        </div>
+      )}
+
+      {/* Certificate */}
+      {selectedAchievement.fileUrl && (
+        <>
+          <div className="rounded-lg border border-border/70 bg-card/40 overflow-hidden">
+  <div className="aspect-[4/3] flex items-center justify-center bg-white">
+    <object
+      data={selectedAchievement.fileUrl}
+      type="application/pdf"
+      className="h-full w-full"
+    >
+      <a
+        href={selectedAchievement.fileUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="text-primary text-xs font-mono"
+      >
+        Open certificate ↗
+      </a>
+    </object>
+  </div>
+</div>
+
+          {/* Download */}
+          <a
+            href={selectedAchievement.fileUrl}
+            download
+            className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-4 py-2 font-mono text-xs uppercase tracking-wider glow-accent hover:-translate-y-0.5 transition-transform"
+          >
+            <Download className="h-4 w-4" />
+            Download Certificate
+          </a>
+        </>
+      )}
+
+    </div>
+  )}
+</Modal>
     </section>
   );
 }
@@ -323,13 +411,13 @@ function CertCard({ cert, index, onView }) {
   );
 }
 
-function AchievementCard({ item, index, progress }) {
+function AchievementCard({ item, index, progress, onView }) {
   const Icon = ACHIEVEMENT_ICONS[item.icon] || Award;
   const magnitude = 28 + index * 14;
   const dir = index % 2 === 0 ? 1 : -1;
   const x = useTransform(progress, [0, 0.5, 1], [dir * magnitude, -dir * magnitude * 0.4, dir * magnitude]);
   const rotate = useTransform(progress, [0, 0.5, 1], [dir * -1.5, 0, dir * 1.5]);
-
+ 
   return (
     <motion.div
       style={{ x, rotate }}
@@ -339,9 +427,19 @@ function AchievementCard({ item, index, progress }) {
         <span className="shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-primary/30 text-primary">
           <Icon className="h-5 w-5" />
         </span>
-        <div>
+        <div className="flex-1 min-w-0">
           <h4 className="font-heading text-base font-semibold leading-snug text-foreground">{item.title}</h4>
           <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{item.detail}</p>
+{item.fileUrl && (
+  <button
+    type="button"
+    onClick={onView}
+    className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-primary/80 hover:text-primary transition-colors"
+  >
+    View Certificate
+    <ArrowRight className="h-3.5 w-3.5" />
+  </button>
+)}
         </div>
       </div>
     </motion.div>

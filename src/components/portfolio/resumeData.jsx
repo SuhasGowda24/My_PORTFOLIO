@@ -138,59 +138,76 @@ export const CERTIFICATIONS = [
     issuer: 'Microsoft',
     year: '2025',
     url: 'https://learn.microsoft.com/en-us/users/suhass-9465/credentials/applied-skill/create-manage-canvas-apps-power-apps?tab=applied-skills-tab',
+    fileUrl: '/Certificates/Credentials%20-%20suhass-9465%20_%20Microsoft%20Learn.pdf',
     verified: true,
-    description: 'Microsoft-verified credential for building canvas apps, model-driven apps, and automating workflows with Power Apps.',
+    description:
+      'Microsoft-verified credential for building canvas apps, model-driven apps, and automating workflows with Power Apps.',
   },
   {
-  name: 'Postman API Fundamentals Student Expert',
-  issuer: 'Postman',
+    name: 'Postman API Fundamentals Student Expert',
+    issuer: 'Postman',
+    year: '2025',
+    url: 'https://badges.parchment.com/public/assertions/IbD0hrinRmO3WBmHM2ziXA',
+    fileUrl: '/Certificates/Postman%20API%20Fundamentals%20Student%20Expert.pdf',
+    verified: true,
+    description:
+      'Postman credential demonstrating foundational skills in API requests, collections, testing workflows, and working with APIs using Postman.',
+  },
+ {
+  name: 'Learn React by Building the Simplest App from Scratch',
+  issuer: 'Udemy',
   year: '2025',
-  url: 'https://badges.parchment.com/public/assertions/IbD0hrinRmO3WBmHM2ziXA',
+  url: 'https://ude.my/UC-3e8b7ab9-772d-4fd5-b43f-5a1f70bbc377',
+  fileUrl: '/Certificates/react%200%20simplest%20app.pdf',
   verified: true,
   description:
-    'Postman credential demonstrating foundational skills in API requests, collections, testing workflows, and working with APIs using Postman.',
+    'Introductory React course covering component structure and building a first app from scratch.',
 },
-  {
-    name: 'Learn React by Building the Simplest App from Scratch',
-    issuer: 'Udemy',
-    year: '2025',
-    url: 'https://ude.my/UC-3e8b7ab9-772d-4fd5-b43f-5a1f70bbc377',
-    verified: true,
-    description: 'Introductory React course covering component structure and building a first app from scratch.',
-  },
-  
-  {
-    name: 'Applied AI: Practical Implementations',
-    issuer: 'Microsoft & SAP (TechSaksham)',
-    year: '2024',
-    url: '',
-    verified: false,
-    description: 'Hands-on program covering applied artificial intelligence concepts and practical implementations using Microsoft & SAP tools and frameworks.',
-  },
-  {
-    name: 'Introduction to Artificial Intelligence',
-    issuer: 'Infosys Springboard',
-    year: '2024',
-    url: '',
-    verified: false,
-    description: 'Foundational course covering core AI concepts, completed through Infosys Springboard.',
-  },
-  {
-    name: 'Generative AI Literacy',
-    issuer: 'NASSCOM FutureSkills Prime',
-    year: '2025',
-    url: '',
-    verified: false,
-    description: 'Course participation aligned to competency standards developed by the IT-ITeS Sector Skills Council, NASSCOM.',
-  },
-  {
-    name: 'Web Application Development Workshop',
-    issuer: 'PyGenicarc',
-    year: '2024',
-    url: '',
-    verified: false,
-    description: 'Workshop on building and deploying modern web applications, covering frontend fundamentals, backend APIs, and deployment basics.',
-  },
+
+{
+  name: 'Applied AI: Practical Implementations',
+  issuer: 'Microsoft & SAP (TechSaksham)',
+  year: '2024',
+  url: '',
+  fileUrl:
+    '/Certificates/Certificate%20Applied%20Artificial%20Intelligence_%20Practical%20Implementations.pdf',
+  verified: false,
+  description:
+    'Hands-on program covering applied artificial intelligence concepts and practical implementations using Microsoft & SAP tools and frameworks.',
+},
+
+{
+  name: 'Introduction to Artificial Intelligence',
+  issuer: 'Infosys Springboard',
+  year: '2024',
+  url: '',
+  fileUrl: '/Certificates/infosys%20springboard%20certificate.pdf',
+  verified: false,
+  description:
+    'Foundational course covering core AI concepts, completed through Infosys Springboard.',
+},
+
+{
+  name: 'Generative AI Literacy',
+  issuer: 'NASSCOM FutureSkills Prime',
+  year: '2025',
+  url: '',
+  fileUrl: '/Certificates/nasscom-Gen%20AI.pdf',
+  verified: false,
+  description:
+    'Course participation aligned to competency standards developed by the IT-ITeS Sector Skills Council, NASSCOM.',
+},
+{
+  name: 'Web Application Development Workshop',
+  issuer: 'PyGenicarc',
+  year: '2024',
+  url: '',
+  fileUrl: '/Certificates/web%20application%20development.png',
+  fileType: 'image',
+  verified: false,
+  description:
+    'Workshop on building and deploying modern web applications, covering frontend fundamentals, backend APIs, and deployment basics.',
+},
   {
     name: 'Full-Stack Foundations — 7 Courses',
     issuer: 'CodeChef',
@@ -203,11 +220,45 @@ export const CERTIFICATIONS = [
 ];
  
 export const ACHIEVEMENTS = [
-  { title: 'Published Researcher', detail: 'Two peer-reviewed papers across national and international engineering venues.', icon: 'book' },
-  { title: 'Conference Presenter', detail: 'Presented NeuroSense research at NCRIE 2025, K.S. Institute of Technology.', icon: 'award' },
-  { title: 'Conference Presenter', detail: 'Presented "Crop Yield Prediction Using ML" at NISCE 2025, RR Institute of Technology.', icon: 'award' },
-  { title: 'National-Level Project Showcase', detail: 'Presented NeuroSense at a National Level Project Competition, Bangalore Institute of Technology.', icon: 'award' },
-  { title: 'Full-Stack Project Delivery', detail: 'Shipped AcademiaFlow end-to-end during industry internship.', icon: 'rocket' },
+  {
+  title: 'Full-Stack Developer Internship Completion',
+  detail:
+    'Successfully completed the Full Stack Developer internship at Gleamator Technologies.',
+  icon: 'rocket',
+  date: '2026',
+  fileUrl: '/Certificates/Gleamator%20intern_completion%20.pdf',
+},
+{
+  title: 'National-Level Project Competition',
+  detail:
+    'Participated in the National Level Project Competition 2025 at Bangalore Institute of Technology with NeuroSense: AI-Driven Parkinson’s Disease Prediction Using Online Handwriting.',
+  icon: 'award',
+  date: '14 Nov 2025',
+  fileUrl: '/Certificates/SUHAS%20%20BIT%20participants%20certificate.pdf',
+},
+ {
+    title: 'Published Researcher',
+    detail:
+      'Co-authored research papers published across national conference and international journal venues.',
+    icon: 'book',
+    fileUrl: '/Certificates/google%20publish%20cert.pdf',
+  },
+
+  {
+    title: 'Research Presenter — NeuroSense',
+    detail:
+      'Presented NeuroSense research at NCRIE 2025, K.S. Institute of Technology.',
+    icon: 'award',
+    fileUrl: '/Certificates/Certificate%20of%20Publication.pdf',
+  },
+
+  {
+    title: 'Research Presenter — Crop Yield Prediction',
+    detail:
+      'Presented "Crop Yield Prediction Using ML" at NISCE 2025, RR Institute of Technology.',
+    icon: 'award',
+    fileUrl: '/Certificates/ISBN-CERTIFICAT-SUHAS%20S%20.pdf',
+  },
 ];
 /**
  * Generates a clean, text-based resume PDF on the fly and triggers a download.
