@@ -1,4 +1,3 @@
-import { jsPDF } from 'jspdf';
 import profilePhoto from '../../assets/images/profilepic.png';
 import companyLogo from '../../assets/images/Gleamator.ico';
 import rubixeLogo from '../../assets/images/rubixelogo.png';
@@ -62,7 +61,7 @@ export const EDUCATION = [
   {
     school: 'Sri Chaitanya PU College, Bengaluru',
     degree: 'Pre-University — PCMC',
-    period: '2020 — 2022',
+    period: '2021 — 2022',
     score: '79.67%',
     points: [],
   },
@@ -260,122 +259,4 @@ export const ACHIEVEMENTS = [
     fileUrl: '/Certificates/ISBN-CERTIFICAT-SUHAS%20S%20.pdf',
   },
 ];
-/**
- * Generates a clean, text-based resume PDF on the fly and triggers a download.
- */
-export function generateResume() {
-  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
-  const W = doc.internal.pageSize.getWidth();
-  const M = 48;
-  let y = 56;
 
-  const ink = [15, 23, 42];
-  const teal = [0, 122, 130];
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(26);
-  doc.setTextColor(...ink);
-  doc.text(PROFILE.name, M, y);
-  y += 18;
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10);
-  doc.setTextColor(90, 90, 90);
-  doc.text(PROFILE.title, M, y);
-  y += 16;
-  doc.text(PROFILE.links.linkedin + '  |  ' + PROFILE.links.github, M, y);
-  y += 22;
-
-  doc.setDrawColor(...teal);
-  doc.setLineWidth(1);
-  doc.line(M, y, W - M, y);
-  y += 20;
-
-  const heading = (t) => {
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(12);
-    doc.setTextColor(...teal);
-    doc.text(t.toUpperCase(), M, y);
-    y += 14;
-    doc.setDrawColor(210, 210, 210);
-    doc.setLineWidth(0.5);
-    doc.line(M, y, W - M, y);
-    y += 14;
-  };
-
-  const para = (t) => {
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10);
-    doc.setTextColor(50, 50, 50);
-    const lines = doc.splitTextToSize(t, W - M * 2);
-    doc.text(lines, M, y);
-    y += lines.length * 13 + 8;
-  };
-
-  const bullet = (t) => {
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10);
-    doc.setTextColor(50, 50, 50);
-    const lines = doc.splitTextToSize(t, W - M * 2 - 12);
-    doc.text('•  ' + lines[0], M, y);
-    doc.text(lines.slice(1), M + 12, y + 13 * (lines.length - 1));
-    y += lines.length * 13 + 4;
-  };
-
-  heading('Profile');
-  para(PROFILE.bio);
-
-  heading('Experience');
-  EXPERIENCE.forEach((e) => {
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(11);
-    doc.setTextColor(...ink);
-    doc.text(`${e.role} — ${e.company}`, M, y);
-    y += 13;
-    e.points.forEach(bullet);
-  });
-  y += 6;
-
-  heading('Skills');
-  SKILLS.forEach((s) => {
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
-    doc.setTextColor(80, 80, 80);
-    doc.text(`${s.group}:`, M, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(50, 50, 50);
-    doc.text(s.items.join(', '), M + 90, y);
-    y += 14;
-  });
-  y += 6;
-
-  heading('Publications');
-  PUBLICATIONS.forEach((p) => {
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
-    doc.setTextColor(...ink);
-    doc.text(p.title, M, y, { maxWidth: W - M * 2 });
-    y += 13;
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(90, 90, 90);
-    doc.text(
-      `${p.venue}  |  ${p.identifierLabel} ${p.identifierValue}`,
-      M,
-      y,
-      { maxWidth: W - M * 2 }
-    );
-    y += 16;
-  });
-  y += 4;
-
-  heading('Certifications');
-  CERTIFICATIONS.forEach((c) => {
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10);
-    doc.setTextColor(50, 50, 50);
-    doc.text(`•  ${c.name} — ${c.issuer}`, M, y, { maxWidth: W - M * 2 });
-    y += 14;
-  });
-
-  doc.save('Suhas_S_Resume.pdf');
-}

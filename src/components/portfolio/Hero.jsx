@@ -1,6 +1,6 @@
 import { ArrowDown, FileDown, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { PROFILE, generateResume } from './resumeData';
+import { PROFILE } from './resumeData';
 import { Image } from '../../components/ui/image';
 
 const TITLE = 'AI Engineer | Machine Learning Engineer | Full-Stack Developer';
@@ -102,13 +102,14 @@ export default function Hero() {
                 View My Projects
                 <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
               </a>
-              <button
-                onClick={generateResume}
+             <a
+                href="/Resume/Suhas_S_CV.pdf"
+                download
                 className="group inline-flex items-center justify-center gap-2 rounded-md glass px-6 py-3 font-mono text-sm font-medium uppercase tracking-wider text-foreground transition-transform hover:-translate-y-0.5"
               >
                 <FileDown className="h-4 w-4 text-primary" />
                 Download Resume
-              </button>
+              </a>
             </motion.div>
 
             <motion.div
