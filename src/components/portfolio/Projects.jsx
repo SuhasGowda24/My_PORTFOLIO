@@ -6,7 +6,7 @@ import ProjectModal from './ProjectModal';
 import NSense from '../../assets/images/NSense.png';
 import AcademiaSync from '../../assets/images/Academia2.png';
 import CYP from '../../assets/images/CYP2.png';
-import Cellpred from '../../assets/images/Cellpred.png';
+import Cellpred from '../../assets/images/CellPred.png';
 import COL from '../../assets/images/COL.png';
 import CreditRisk from '../../assets/images/CreditRisk.png';
 
