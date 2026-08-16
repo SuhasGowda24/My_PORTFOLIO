@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <a href="https://github.com/SuhasGowda24" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub"><Github className="h-4 w-4" /></a>
             <a href="https://linkedin.com/in/suhas-s-641a6a243" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn"><Linkedin className="h-4 w-4" /></a>
-            <a href="mailto:suhas@example.com" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Email"><Mail className="h-4 w-4" /></a>
+            <a href="mailto:srisuhasgowda24@gmail.com" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Email"><Mail className="h-4 w-4" /></a>
           </div>
         </div>
       </div>
