@@ -24,7 +24,7 @@ export const EXPERIENCE = [
     company: 'Rubixe',
     companyLogo: rubixeLogo,
     link: 'https://rubixe.com/',
-    period: 'Feb 2026 – Present',
+    period: 'June 2026 – Present',
     location: 'Bengaluru, Karnataka, India · Remote',
     points: [
       'Gaining practical, hands-on experience in Data Science, Machine Learning, Deep Learning, and Artificial Intelligence.',
