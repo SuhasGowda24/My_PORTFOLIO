@@ -103,7 +103,7 @@ export default function Hero() {
                 <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
               </a>
              <a
-                href="/Resume/Suhas_S_CV.pdf"
+                href="/Resume/Suhas_S_CV_AI_ML.pdf"
                 download
                 className="group inline-flex items-center justify-center gap-2 rounded-md glass px-6 py-3 font-mono text-sm font-medium uppercase tracking-wider text-foreground transition-transform hover:-translate-y-0.5"
               >

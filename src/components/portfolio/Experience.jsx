@@ -27,9 +27,9 @@ function SectionHeader({ tab, onTabChange }) {
 
       <Reveal delay={0.05}>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-foreground/80">
-          A snapshot of my{' '}
+          A journey through my{' '}
           <span className="text-primary font-semibold">
-            professional experience and academic journey.
+            professional experiences, technical roles, and academic background.
           </span>
         </p>
       </Reveal>

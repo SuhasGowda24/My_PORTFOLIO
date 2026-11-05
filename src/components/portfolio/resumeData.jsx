@@ -20,32 +20,47 @@ export const PROFILE = {
 
 export const EXPERIENCE = [
   {
-    role: 'Artificial Intelligence Engineer Intern',
+    role: 'AI Engineer Intern',
     company: 'Rubixe',
     companyLogo: rubixeLogo,
     link: 'https://rubixe.com/',
-    period: 'June 2026 – Present',
+    period: 'Feb 2026 – Oct 2026',
     location: 'Bengaluru, Karnataka, India · Remote',
     points: [
-      'Gaining practical, hands-on experience in Data Science, Machine Learning, Deep Learning, and Artificial Intelligence.',
-      'Working on data science projects and a client project, building skills in data analysis and applied machine learning.',
-      'Moving into AI-focused work, developing practical skills in AI and Deep Learning.',
+       "Gained hands-on experience in Data Science, Machine Learning, Deep Learning, and Artificial Intelligence through industry-oriented training and practical projects.",
+    "Worked on data science capstone projects and a client project, applying data analysis and machine learning techniques to real-world problem statements.",
+    "Developed Proof of Concept (POC) solutions and completed project-based assignments, strengthening practical AI skills and analytical problem-solving abilities.",
+    "Progressed into AI-focused work, gaining practical exposure to AI and Deep Learning concepts and applications.",
     ],
-    tags: ['Python', 'Machine Learning', 'Deep Learning', 'Data Science', 'AI'],
+     tags: [
+    "Python",
+    "Data Science",
+    "Machine Learning",
+    "Deep Learning",
+    "Artificial Intelligence"
+  ],
   },
   {
-    role: 'Full Stack Developer Intern',
+    role: 'Python Full Stack Developer Intern',
     company: 'Gleamator Technologies',
     companyLogo: companyLogo,
     link: 'https://gleamator.in/',
     period: 'Feb 2026 – May 2026',
     location: 'Bengaluru, Karnataka, India',
       points: [
-      'Developed and deployed AcademiaFlow, a full-stack academic management system with role-based dashboards for Admin, Teacher, and Student users.',
-      'Designed and integrated RESTful APIs using Django REST Framework with MySQL.',
-      'Built responsive UI using React.js to automate academic workflows.',
+   "Developed and deployed AcademiaFlow, a full-stack academic management system featuring role-based dashboards for Admin, Teacher, and Student users.",
+    "Designed and integrated RESTful APIs using Django REST Framework with database integration.",
+    "Built responsive user interfaces using React.js to streamline and automate academic workflows."
     ],
-    tags: ['ReactJS', 'Django', 'PostgreSQL', 'REST APIs', 'Full-Stack'],
+    tags: [
+    "Python",
+    "React.js",
+    "Django REST Framework",
+    "MySQL",
+    "PostgreSQL",
+    "REST APIs",
+    "Full-Stack Development"
+  ],
   },
 ];
 

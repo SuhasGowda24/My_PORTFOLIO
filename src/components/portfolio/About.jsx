@@ -5,18 +5,18 @@ import { PROFILE } from "./resumeData";
 const EXPERTISE = [
   {
     icon: Brain,
-    title: "Machine Learning",
-    points: ["TensorFlow & Keras", "Scikit-learn", "Model Development"],
+    title: "AI & Machine Learning",
+    points: ["TensorFlow & Keras", "Scikit-learn", "Model Training & Evaluation", "Deep Learning"],
   },
   {
     icon: Code2,
     title: "Full-Stack Development",
-    points: ["React.js", "Flask & Django", "REST APIs"],
+    points: ["React.js", "Python,Flask & Django", "REST API Development"],
   },
   {
     icon: ScanSearch,
     title: "Computer Vision",
-    points: ["OpenCV", "CNN Architectures", "Image Processing"],
+    points: ["OpenCV", "CNN Architectures",  "Transfer Learning", "Image Processing"],
   },
   {
     icon: Award,

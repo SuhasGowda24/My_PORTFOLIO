@@ -6,7 +6,7 @@ import ProjectModal from './ProjectModal';
 import NSense from '../../assets/images/NSense.png';
 import AcademiaSync from '../../assets/images/Academia2.png';
 import CYP from '../../assets/images/CYP2.png';
-import Cellpred from '../../assets/images/CellPred.png';
+import DocuMind from '../../assets/images/RAG.png';
 import COL from '../../assets/images/COL.png';
 import CreditRisk from '../../assets/images/CreditRisk.png';
 
@@ -49,23 +49,35 @@ const FALLBACK = [
     resultsNote:
        'Designed to support crop planning and resource decisions by combining historical agricultural data with current weather conditions.',
     image_url: CYP,
-    github_url: 'https://github.com/pavanu123/Crop_Yeild_Prediction_Using_ML',
+    github_url: 'https://github.com/SuhasGowda24/Crop_Yield_Prediction.git',
     paper_url: 'https://github.com/SuhasGowda24/research-publications/blob/main/IJESIRD%20Journal%20Paper.pdf',
     order: 3,
   },
   {
-    title: 'Cell Phone Price Range Prediction',
-    tech_stack: ['Python', 'Pandas', 'Scikit-learn', 'XGBoost'],
-    description: 'Multiclass classification of mobile phone price ranges using hardware and connectivity specs; compared 7 models and tuned with GridSearchCV. Tuned Logistic Regression achieved 98.25% test accuracy and 96.12% cross-validation accuracy.',
-    results: [
-      '98.25% Test Accuracy · 96.12% 5-Fold CV Accuracy · Logistic Regression Selected'
-    ],
-    image_url: Cellpred,
-    github_url: 'https://github.com/SuhasGowda24/Cellphone-Price-Range-Prediction',
-    paper_url: '',
-    // metric: '98.25% Accuracy',
-    order: 4,
-  },
+  title: 'DocuMind AI: RAG-Based Document Question Answering System',
+  tech_stack: [
+    'Python',
+    'LangChain',
+    'Sentence Transformers',
+    'ChromaDB',
+    'Groq API',
+    'PyPDF',
+    'Streamlit',
+    'RAGAS'
+  ],
+  description: 'Built an end-to-end RAG application that answers questions from research PDFs using semantic retrieval and LLM generation. Implemented document processing, query expansion, vector search, Reciprocal Rank Fusion (RRF), context-grounded responses, and source attribution.',
+  results: [
+    '94.71% Faithfulness',
+    '72.57% Answer Relevancy',
+    '10 Evaluation Questions'
+  ],
+  resultsNote:
+    'Preliminary RAGAS evaluation results. The evaluation used two different LLM configurations due to API quota limitations.',
+  image_url: DocuMind,
+  github_url: 'https://github.com/SuhasGowda24/ai-ml-knowledge-assistant',
+  demo_url: 'https://ai-ml-knowledge-assistant-csaaac5cj8sva59rz9mhyp.streamlit.app/',
+  order: 4,
+},
    {
     title: 'Cost of Living Index by Country',
     tech_stack: ['Python', 'Flask', 'SQLite'],
@@ -79,30 +91,31 @@ const FALLBACK = [
     demo_url: 'https://mini-project-cost-of-living.onrender.com/',
     order: 5,
   },
-  {
-  title: 'Credit Risk Prediction & Customer Scoring',
+ {
+  title: 'Bank GoodCredit: Credit Risk Prediction & Customer Scoring',
   tech_stack: [
     'Python',
     'Pandas',
+    'NumPy',
     'Scikit-learn',
+    'XGBoost',
+    'LightGBM',
+    'CatBoost',
     'Feature Engineering',
-    'Machine Learning',
     'Model Evaluation'
   ],
   description:
-    'Ongoing banking risk analytics project focused on predicting customer credit quality and identifying potential credit default risk using historical account, payment, enquiry, and demographic data.',
-  // results: [
-  //   'Credit Risk Classification',
-  //   'Feature Engineering & Selection',
-  //   'Gini-Based Model Evaluation'
-  // ],
-  // resultsNote:
-  //   'Currently working on data exploration, feature engineering, model development, Gini-based evaluation, and rank-order analysis as part of the credit risk modeling workflow.',
+    'Developed a machine learning solution to predict customer credit risk and classify customers as Good or Bad using historical account, payment, enquiry, and demographic data. Performed exploratory data analysis, leakage-safe preprocessing, feature engineering, and comparative evaluation of multiple classification algorithms. Optimized Logistic Regression using hyperparameter tuning, Gini-based model selection, and classification threshold analysis.',
+  results: [
+    '39.67% Gini Coefficient',
+    'ROC-AUC: 0.6983',
+    '55.72% Bad-Class Recall',
+    '1.77 Percentage Points Above Benchmark'
+  ],
+  resultsNote:
+    'Optimized Logistic Regression (C = 0.01) selected as the final model, exceeding the 37.90% Gini benchmark. At a 0.05 classification threshold, the model achieved 55.72% recall and 8.18% precision for Bad customers. Evaluated on a held-out test set of 4,780 records.',
   image_url: CreditRisk,
-  github_url: '',
-  demo_url: '',
-  paper_url: '',
-  status: 'Currently Building',
+  github_url: 'https://github.com/SuhasGowda24/Bank-GoodCredit-Credit-Risk-Prediction.git',
   order: 6,
 },
 ];
